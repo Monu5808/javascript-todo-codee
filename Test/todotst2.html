@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <h1>To do app</h1>
+
+    <input id="inputData">
+    <button onclick="addList()">Add</button>
+
+    <div id="myList">
+
+    </div>
+
+</body>
+
+<script>
+
+    var inputData = document.getElementById("inputData");
+    var myList = document.getElementById("myList");
+    let arr = [];
+
+    // getting old data of localStorage
+
+    let obj = localStorage.getItem('item'); // getting values of local storage
+
+    if(obj!=null) // if the local storage is empty, then it will throught an error
+    {
+    arr = JSON.parse(obj); // converting string to object
+    } 
+
+    print();
+
+   
+
+    function addList()
+    {
+
+        var val = inputData.value;
+
+        if(inputData.value.length==0)
+        {
+            alert("please enter the value");
+        }
+
+        else{
+
+             
+ 
+
+        arr.push(val); 
+
+        let str = JSON.stringify(arr);   // converting object to string
+        localStorage.setItem('item', str); // adding data to local storage
+
+
+        let obj = localStorage.getItem('item'); // getting values of local storage
+        arr = JSON.parse(obj); // converting string to object
+
+
+        inputData.value=''; // to clear input field after adding value
+
+
+        myList.innerHTML = "";// to remove all elements of mylist div before printing
+
+        print();
+
+
+        }
+
+           
+        
+    }
+
+    function print(){
+
+        for(let i=0; i<arr.length; i++)
+        {
+                
+                let list = document.createElement('h3');
+                list.innerText = arr[i];
+                let deleteButton = document.createElement('button'); 
+                deleteButton.innerText = "delete";  
+                list.id=i+1;
+                deleteButton.id=i+1;
+
+                myList.append(list, deleteButton);           
+         }
+
+
+         
+    }
+
+    myList.addEventListener("click", function(e){
+        if(e.target.tagName == "BUTTON"){
+        
+            //e.target.previousSibling.remove();
+            //e.target.remove();
+            let getId = e.target.id;
+            index = getId-1;
+            console.log(index);
+            console.log(arr);
+            arr.splice(index, 1);
+            console.log(arr);
+
+            let str = JSON.stringify(arr);   // converting object to string
+            localStorage.setItem('item', str);
+
+            let obj = localStorage.getItem('item');
+            arr = JSON.parse(obj);
+
+            myList.innerHTML = "";// to remove all elements of mylist div before printing
+
+            for(let i=0; i<arr.length; i++)
+        {
+                
+                let list = document.createElement('h3');
+                list.innerText = arr[i];
+                let deleteButton = document.createElement('button'); 
+                deleteButton.innerText = "delete";  
+                list.id=i+1;
+                deleteButton.id=i+1;
+
+                myList.append(list, deleteButton);           
+         }
+            
+        }
+    }
+    
+    );
+
+    
+
+   
+   
+
+</script>
+</html>

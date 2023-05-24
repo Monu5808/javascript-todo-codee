@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <h1>To do app</h1>
+
+    <input id="inputData">
+    <button onclick="addList()">Add</button>
+
+    <div id="myList">
+
+    </div>
+
+</body>
+
+<script>
+
+    var inputData = document.getElementById("inputData");
+
+   /* To store array
+   
+   let arr = [];
+    let obj = localStorage.getItem('item');
+    arr = JSON.parse(obj);*/
+
+    function addList()
+    {
+
+        var getData = inputData.value;
+        console.log(getData);
+
+       /* var val = inputData.value;
+        arr.push(val); 
+
+        let str = JSON.stringify(arr);
+        localStorage.setItem('item', str); */
+
+       // let str = JSON.stringify(arr);
+        // localStorage.setItem('item', str);
+        //localStorage.setItem("city", "mathura");
+       // const res = localStorage.getItem("city");
+       //localStorage.removeItem("city");
+       // localStorage.clear()
+
+       
+
+        
+    
+        // localStorage.clear();
+        // console.log(arr);
+        // inputData.value='';
+
+       // save(arr);
+       // localStorage.setItem('item', arr);
+         // const res = localStorage.getItem('item');
+         // console.log(res);
+        //let leng = res.length;
+        //console.log(res[3]);
+        
+
+
+    }
+   
+
+</script>
+</html>

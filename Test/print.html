@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Array Print</h1>
+    <p id="mylist"></p>
+</body>
+
+<script>
+    let arr = ["element1", "element2", "element3"];
+    let list = document.getElementById("mylist");
+    let len = arr.length;
+
+    for (let i=0; i<len; i++)
+    {
+        let li = document.createElement("p");
+        li.innerText = arr[i];
+        list.append(li);
+    }
+
+    /* arr.forEach((item)=>{
+        let li = document.createElement("li");
+        li.innerText = item;
+        list.append(li);
+    }) */
+</script>
+</html>

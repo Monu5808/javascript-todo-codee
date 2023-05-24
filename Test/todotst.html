@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <h1>To do app</h1>
+
+    <input id="inputData">
+    <button onclick="addList()">Add</button>
+
+    <div id="myList">
+
+    </div>
+
+</body>
+
+<script>
+
+    var inputData = document.getElementById("inputData");
+    var myList = document.getElementById("myList");
+    let arr = [];
+
+    // getting old data of localStorage
+
+    let obj = localStorage.getItem('item'); // getting values of local storage
+
+    if(obj!=null) // if the local storage is empty, then it will throught an error
+    {
+    arr = JSON.parse(obj); // converting string to object
+    } 
+
+    print();
+
+
+    
+
+    // ---------delete function ------------
+
+    myList.addEventListener("click", function(e){
+        if(e.target.innerText == "delete"){
+        
+            let getId = e.target.id;
+            index = getId-1;
+            arr.splice(index, 1);
+
+            saveLsData();
+
+            getLsData();
+
+            myList.innerHTML = "";// to remove all elements of mylist div before printing
+
+            print();
+            
+        }
+    }
+    
+    );
+
+
+
+    // ------------ edit Function ---------------------
+
+    myList.addEventListener("click", function(e){
+        if(e.target.innerText == "edit"){
+
+            let editId = e.target.id;
+            index = editId-1;
+            getLsData();
+
+            let editValue = prompt("Edit Text", arr[index]); // taking edit value from user and storing it in a variable
+            
+            if(editValue.length==0){
+                
+                alert("please enter a value");
+                
+            
+            }
+
+            else{
+
+                arr.splice(index, 1, editValue);
+
+                saveLsData();
+
+                myList.innerHTML = "";// to remove all elements of mylist div before printing
+
+                print();
+
+            }
+
+            }
+
+
+    }
+    );
+
+
+
+
+    /*------------- All defined function --------------*/
+
+
+
+
+    function addList()
+    {
+
+        var val = inputData.value;
+
+        if(inputData.value.length==0) //checking input is emplty or not
+        {
+            alert("please enter the value");
+        }
+
+        else{
+
+        arr.push(val); 
+        
+        saveLsData();
+
+        inputData.value=''; // to clear input field after adding value
+        myList.innerHTML = "";// to remove all elements of mylist div before printing
+        
+        getLsData();
+        print();
+
+    
+        }       
+        
+    }
+
+
+    function getLsData(){
+
+        let obj = localStorage.getItem('item'); // getting values of local storage
+        arr = JSON.parse(obj); // converting string to object
+
+        }
+
+    function saveLsData(){
+
+        let str = JSON.stringify(arr);   // converting object to string
+        localStorage.setItem('item', str); // adding data to local storage
+
+        }       
+
+    function print(){
+
+        for(let i=0; i<arr.length; i++)
+        {
+                
+                let list = document.createElement('h3');
+                list.innerText = arr[i];
+
+                let deleteButton = document.createElement('button'); 
+                deleteButton.innerText = "delete";  
+
+                let editButton = document.createElement('button');
+                editButton.innerText = "edit";
+
+                list.id=i+1;
+                deleteButton.id=i+1;
+                editButton.id = i+1;
+
+                myList.append(list, deleteButton, editButton);           
+         }
+
+
+         
+    }
+
+ 
+
+</script>
+</html>

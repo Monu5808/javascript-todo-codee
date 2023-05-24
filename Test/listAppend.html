@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+   
+    <h1>Tod list app</h1>
+    <input id="data" >
+    <button onclick="addData()">add</button>
+
+    <div id="myList">
+    </div>
+
+</body>
+
+
+
+
+<script>
+    let inputData = document.getElementById("data");
+    let list = document.getElementById("myList");
+
+    function addData()
+    
+    {
+        let val = inputData.value;
+
+        let li = document.createElement("h3");
+        li.innerText = val;
+        
+        deleteButton = document.createElement("button");
+        deleteButton.innerText = "delete";
+
+        list.append(li, deleteButton);     
+    }
+
+        list.addEventListener("click", function(e){
+        if(e.target.tagName == "BUTTON"){
+        
+            e.target.previousSibling.remove();
+            e.target.remove();
+        }
+    }
+    
+    );
+   
+</script>
+
+
+
+</html>
